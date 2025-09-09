@@ -73,11 +73,8 @@ int main(void)
     string place = "마을";
     char actionChoice;
 
-
-
-
     // 몬스터 전투 구현
-    int Monster_choice = 1 + rand() % 8; // 1 ~ 8 랜덤 선택 
+    int Monster_choice = 1 + rand() % 8; // 랜덤으로 몬스터를 조우
     Monster* monster = nullptr;
 
 
@@ -144,8 +141,12 @@ int main(void)
 
                 for (const string& d : monster->Droptable()) //드랍 테이블
                     cout << "드랍 아이템 : " << d << endl; // 드랍 테이블
-
-                
+                //// 작업해야되는 부분
+                // 1. 몬스터 처치시 드랍테이블에 있는 아이템 중 1가지만 string 또는 char 타입으로 받을 것
+                // 2. 아이템 드랍 확률을 조정 할 것.
+                // -> 1) 아이템이 드랍됐는가? (y/n)
+                // -> 2) 소비아이템 또는 전리품 중 1가지 랜덤으로 결정 (난수)
+                // -> 3) 최종 드랍아이템이 정해졌으면 인벤토리에 넣을 것.
 
                 delete monster;
 
@@ -259,29 +260,31 @@ int main(void)
 
 
 
+    // 이쪽은 임시로 메모해둔 것
+    // 인벤토리 구현 관련해서 나중에 활용하고 완성시 지울 예정.
+    // 
+    //    while (true) {
+    //    actionChoice = 0;
 
-    //while (true) {
-//    actionChoice = 0;
+    //    cout << "뭐줘? " << endl;
+    //    cout << "[1]추가 [2]제거 [3]볼래 [4]나가" << endl;
+    //    cin >> actionChoice;
 
-//    cout << "뭐줘? " << endl;
-//    cout << "[1]추가 [2]제거 [3]볼래 [4]나가" << endl;
-//    cin >> actionChoice;
-
-//    if (actionChoice == '1') {
-//        cin >> item >> count;
-//        inv.addItem(item, count);
-//    }
-//    else if (actionChoice == '2') {
-//        cin >> item >> count;
-//        inv.removeItem(item, count);
-//    }
-//    else if (actionChoice == '3') {
-//        inv.showInventory();
-//    }
-//    else if (actionChoice == '4') {
-//        break;
-//    }
-//    else {
-//        cout << "알 수 없는 명령어입니다.\n";
-//    }
-//}
+    //    if (actionChoice == '1') {
+    //        cin >> item >> count;
+    //        inv.addItem(item, count);
+    //    }
+    //    else if (actionChoice == '2') {
+    //        cin >> item >> count;
+    //        inv.removeItem(item, count);
+    //    }
+    //    else if (actionChoice == '3') {
+    //        inv.showInventory();
+    //    }
+    //    else if (actionChoice == '4') {
+    //        break;
+    //    }
+    //    else {
+    //        cout << "알 수 없는 명령어입니다.\n";
+    //    }
+    //}
