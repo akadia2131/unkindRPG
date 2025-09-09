@@ -17,7 +17,7 @@
 
 using namespace std;
 
-
+// 반영됨?
 // 메인 함수
 int main(void)
 {
