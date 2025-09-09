@@ -17,7 +17,12 @@
 
 using namespace std;
 
+<<<<<<< HEAD
 // 반영됨?
+=======
+
+// 반영? 
+>>>>>>> dev
 // 메인 함수
 int main(void)
 {
