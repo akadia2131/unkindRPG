@@ -29,12 +29,7 @@ int main(void)
 
     Inventory inv;
     string item;
-<<<<<<< HEAD
     int price;
-=======
-    //몬스터 드랍 아이템;
- 
->>>>>>> a96576efc1cb1b1db00d3ded9b29b3e9930394ec
     int count;
     string itemType;
 
@@ -141,39 +136,18 @@ int main(void)
 
                 monster->printMonsterStatus();       
 
-                inv.addItem(monster->Droptable("").front(), 1);
+                inv.addItem(monster->Droptable("").front(), 100, 1, "기타");
 
                 int Exp = 50; // 50 경험치
                 int Gold = 10 + rand() % 11; // 10 ~ 20 골드 
                 cout << "보상을 얻었다!! " << endl;
                 cout << "경험치 : " << Exp << endl;
                 cout << "골드 : " << Gold << endl;
-
-                //// 작업해야되는 부분
-                // 1. 몬스터 처치시 드랍테이블에 있는 아이템 중 1가지만 string 또는 char 타입으로 받을 것
-                // 2. 아이템 드랍 확률을 조정 할 것. 
-                // -> 1) 아이템이 드랍됐는가? (y/n) 
-                // -> 2) 소비아이템 또는 전리품 중 1가지 랜덤으로 결정 (난수)
-                // -> 3) 최종 드랍아이템이 정해졌으면 인벤토리에 넣을 것.
                 
                 delete monster;
 
                 cout << "\n\n[ 몬스터 토벌을 종료합니다 ]" << endl;
                 
-                // 임시 아이템 드랍
-
-                item = "탕후루";
-                count = 1;
-                price = 100;
-                itemType = "소모";
-                inv.addItem(item, price, count, itemType);
-
-                cout << item << "을(를) 얻었습니다!" << endl;
-
-                
-
-
-
                 cout << "\n[ 더 사냥하시겠습니까? ]" << endl;
                 cout << "[1] 네 / [2] 아니오" << endl;
                 cin >> actionChoice;
@@ -225,8 +199,6 @@ int main(void)
                         cin >> item;
                         count = 1;
                         price = 1000;
-                        //price *= 100;
-                        //price %= 160;
                         itemType = "무기";
 
                         inv.addItem(item, price, count, itemType);
