@@ -23,14 +23,17 @@ private:
     int getTypePriority(const string& type) const; // 타입 우선순위
 
 public:
-    void addItem(const string& name, int price, int count, const string& type);
-    void removeItem(const string& name, int count);
-    void showInventory();
-    pair<int, int> sellItem(const string& name, int count); // (판매 개수, 총 가격)
-    void addGold(int amount);    // 골드 추가
-    void reduceGold(int amount); // 골드 감소
-    void showGold() const; // 소지금 표시
-    tuple<int, int, string> getItemInfo(const string& name) const; // 아이템 정보 조회: (수량, 가격, 타입) 반환
+    void addItem(const string& name, int price, int count, const string& type); // 아이템 이름으로 아이템 추가 (아이템, 가격, 수량, 타입)을 넣어야함.
+    void removeItem(const string& name, int count); // 아이템 이름으로 제거
+    void showInventory(); // 인벤토리 열기
+    pair<int, int> sellItem(const string& name, int count); // 아이템 이름으로 아이템 판매
+    pair<int, int> sellItemIndex(int index, int count); // 아이템 번호로 아이템 판매
+    void addGold(int amount);    // 골드 획득
+    void reduceGold(int amount); // 골드 소실
+    void showGold() const; // 소지 골드 확인
+    tuple<int, int, string> getItemInfo(const string& name) const; // 아이템 이름으로 정보 조회 : (수량, 가격, 타입) 반환
+    tuple<string, int, int> ItemInfoIndex(int index); // 아이템 번호로 정보 조회 : (이름, 수량) 반환
+
 };
 
 #endif
