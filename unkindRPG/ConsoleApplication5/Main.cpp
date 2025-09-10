@@ -214,9 +214,6 @@ int main(void)
             
                 inv.addItem(monster->Droptable("").front(), 100, 1, "기타");
 
-
-                item = monster->Droptable("").front();
-
                 int Exp = 50; // 50 경험치
                 int Gold = 10 + rand() % 11; // 10 ~ 20 골드 
                 cout << "보상을 얻었다!! " << endl;
@@ -294,7 +291,7 @@ int main(void)
                     
                     inv.showInventory();
                     string inputItem;
-                    cout << "[ 판매할 아이템 이름 또는 번호 입력 ]" << endl;
+                    cout << "\n[ 판매할 아이템 이름 또는 번호 입력 ]" << endl;
                     cin.ignore(numeric_limits<streamsize>::max(), '\n');
                     getline(cin, inputItem);
 
@@ -398,7 +395,6 @@ int main(void)
                                 cout << "\n" << item << "을(를) " << count << "개 판매하시겠습니까?" << endl;
                                 cout << "[1] 네 / [2] 아니오" << endl;
 
-<<<<<<< HEAD
                                 cin >> actionChoice;
 
                                 switch (actionChoice)
@@ -419,9 +415,7 @@ int main(void)
                                     break;
                                 }
                             }
-=======
 
->>>>>>> work
                             }
                         }// 판매 반복문 종료
                     }
