@@ -27,7 +27,7 @@ Hydra::Hydra()
 	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
 	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
 	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
-	monsterdefence = 40;
+	monsterdefence = 0;
 }
 
 Hydra::Hydra(string monstername)
@@ -43,7 +43,7 @@ Hydra::Hydra(string monstername)
 	monstermaxhp = 500 * hprandom;
 	monsterhp = 500 * hprandom;
 	monsterpower = 50 * powerrandom;
-	monsterdefence = 40;
+	monsterdefence = 0;
 }
 
 vector<string> Hydra::Droptable(string) const

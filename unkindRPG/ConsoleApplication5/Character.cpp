@@ -35,7 +35,8 @@ void Character::printCharacterStatus()
     cout << "현재 HP : " << characterhp << endl;
     cout << "공격력: " << characterpower << endl;
     cout << "방어력: " << characterdefence << endl;
-    cout << "방어력: " << characterdefence << endl;
+    cout << "경험치: " << characterexp << endl;
+    cout << "소지금: " << charactergold << endl;
     cout << "------------------------------------" << endl;
 }
 
