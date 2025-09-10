@@ -72,6 +72,18 @@ int main(void)
         }
     } // 이름 설정 종료
 
+    // 캐릭터 설정
+    Character character(name); //캐릭터
+    string CharaterName = character.getCharacterName(); // 캐릭터 이름
+    int CharaterLevel = character.getCharacterLevel(); // 캐릭터 레벨
+    int CharaterMaxhp = character.getCharacterMaxHp(); // 캐릭터 최대 체력
+    int CharaterHp = character.getCharacterHp(); // 캐릭터 현재 체력
+    int CharaterPower = character.getCharacterPower(); // 캐릭터 공격력
+    int CharaterDefence = character.getCharacterDefence(); // 캐릭터 방어력
+    int CharaterExp = character.getCharacterExp(); // 캐릭터 경험치
+    int CharaterGold = character.getCharacterGold(); // 캐릭터 소지금
+
+
     // 행동 반복하기
     cout << "\n";
     string place = "마을";
@@ -79,8 +91,71 @@ int main(void)
 
     // 몬스터 전투 구현
     int Monster_choice = 1 + rand() % 8; // 랜덤으로 몬스터를 조우
-    Monster* monster = nullptr;
+    Monster* monster = nullptr; // 몬스터
 
+    monster = new Orc("Orc");
+    string OrcName = monster->getMonsterName(); // 오크 이름
+    int OrcMaxhp = monster->getMonsterMaxHp(); // 오크 최대 체력
+    int OrcHp = monster->getMonsterHp(); // 오크 현재 체력
+    int OrcPower = monster->getMonsterPower(); // 오크 공격력
+    int OrcDefence = monster->getMonsterDefence(); // 오크 방어력
+    delete monster;
+
+    monster = new Troll("Troll");
+    string TrollName = monster->getMonsterName(); // 트롤 이름
+    int TrollMaxhp = monster->getMonsterMaxHp(); // 트롤 최대 체력
+    int TrollHp = monster->getMonsterHp(); // 트롤 현재 체력
+    int TrollPower = monster->getMonsterPower(); // 트롤 공격력
+    int TrollDefence = monster->getMonsterDefence(); // 트롤 방어력
+    delete monster;
+
+    monster = new Slime("Slime");
+    string SlimeName = monster->getMonsterName(); // 슬라임 이름
+    int SlimeMaxhp = monster->getMonsterMaxHp(); // 슬라임 최대 체력
+    int SlimeHp = monster->getMonsterHp(); // 슬라임 현재 체력
+    int SlimePower = monster->getMonsterPower(); // 슬라임 공격력
+    int SlimeDefence = monster->getMonsterDefence(); // 슬라임 방어력
+    delete monster;
+
+    monster = new Skeleton("Skeleton");
+    string SkeletonName = monster->getMonsterName(); // 스켈레톤 이름
+    int SkeletonMaxhp = monster->getMonsterMaxHp(); // 스켈레톤 최대 체력
+    int SkeletonHp = monster->getMonsterHp(); // 스켈레톤 현재 체력
+    int SkeletonPower = monster->getMonsterPower(); // 스켈레톤 공격력
+    int SkeletonDefence = monster->getMonsterDefence(); // 스켈레톤 방어력
+    delete monster;
+
+    monster = new Hydra("Hydra");
+    string HydraName = monster->getMonsterName(); // 히드라 이름
+    int HydraMaxhp = monster->getMonsterMaxHp(); // 히드라 최대 체력
+    int HydraHp = monster->getMonsterHp(); // 히드라 현재 체력
+    int HydraPower = monster->getMonsterPower(); // 히드라 공격력
+    int HydraDefence = monster->getMonsterDefence(); // 히드라 방어력
+    delete monster;
+
+    monster = new Goblin("Goblin");
+    string GoblinName = monster->getMonsterName(); // 고블린 이름
+    int GoblinMaxhp = monster->getMonsterMaxHp(); // 고블린 최대 체력
+    int GoblinHp = monster->getMonsterHp(); // 고블린 현재 체력
+    int GoblinPower = monster->getMonsterPower(); // 고블린 공격력
+    int GoblinDefence = monster->getMonsterDefence(); // 고블린 방어력
+    delete monster;
+
+    monster = new Ghoul("Ghoul");
+    string GhoulName = monster->getMonsterName(); // 구울 이름
+    int GhoulMaxhp = monster->getMonsterMaxHp(); // 구울 최대 체력
+    int GhoulHp = monster->getMonsterHp(); // 구울 현재 체력
+    int GhoulPower = monster->getMonsterPower(); // 구울 공격력
+    int GhoulDefence = monster->getMonsterDefence(); // 구울 방어력
+    delete monster;
+
+    monster = new Drake("Drake");
+    string DrakeName = monster->getMonsterName(); // 드레이크 이름
+    int DrakeMaxhp = monster->getMonsterMaxHp(); // 드레이크 최대 체력
+    int DrakeHp = monster->getMonsterHp(); // 드레이크 현재 체력
+    int DrakePower = monster->getMonsterPower(); // 드레이크 공격력
+    int DrakeDefence = monster->getMonsterDefence(); // 드레이크  방어력
+    delete monster;
 
     while (true)
     {
@@ -127,7 +202,7 @@ int main(void)
                 case 6:
                     monster = new Ghoul(name);
                     break;
-                case 7:
+                case 7:                                                        
                     monster = new Hydra(name);
                     break;
                 case 8:
@@ -136,8 +211,11 @@ int main(void)
                 }
                 
                 monster->printMonsterStatus();
-
+            
                 inv.addItem(monster->Droptable("").front(), 100, 1, "기타");
+
+
+                item = monster->Droptable("").front();
 
                 int Exp = 50; // 50 경험치
                 int Gold = 10 + rand() % 11; // 10 ~ 20 골드 
@@ -147,6 +225,8 @@ int main(void)
 
                 delete monster;
 
+           
+                
                 cout << "\n\n[ 몬스터 토벌을 종료합니다 ]" << endl;
 
                 cout << "\n[ 더 사냥하시겠습니까? ]" << endl;
@@ -318,6 +398,7 @@ int main(void)
                                 cout << "\n" << item << "을(를) " << count << "개 판매하시겠습니까?" << endl;
                                 cout << "[1] 네 / [2] 아니오" << endl;
 
+<<<<<<< HEAD
                                 cin >> actionChoice;
 
                                 switch (actionChoice)
@@ -338,6 +419,9 @@ int main(void)
                                     break;
                                 }
                             }
+=======
+
+>>>>>>> work
                             }
                         }// 판매 반복문 종료
                     }
@@ -362,14 +446,14 @@ int main(void)
 
 
             }
+        }
+        case '3': //캐릭터 상태창 확인
+        {
+            character.printCharacterStatus(); 
 
             break;
-
-        } // 상점 나가기
-        case '3':
-        {
-
         }
+        
         case '4': // 인벤토리 확인
         {
             inv.showInventory();

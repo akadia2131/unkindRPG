@@ -8,10 +8,10 @@ class Character
 {
 public:
     Character();
-    Character(string charactername); // 몬스터 이름
+    Character(string charactername); // 캐릭터 이름
 
     // virtual void attack() = 0; // 몬스터가 공격하기 미구현
-    void printCharacterStatus(); // 몬스터 스탯
+    void printCharacterStatus(); // 캐릭터 스탯
 
 
     // getter 함수
