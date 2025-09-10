@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <ctime>
 
+using namespace std;
+
 static void random()
 {
 	static bool randoms = false;
@@ -13,8 +15,6 @@ static void random()
 	}
 }
 
-using namespace std;
-
 Slime::Slime()
 {
 
@@ -22,31 +22,39 @@ Slime::Slime()
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-	name = "Slime";
-	level = 1;
-	hp = 50 * hprandom;
-	power = 5 * powerrandom;
-	defence = 0;
+	monstername = "Slime";
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monsterdefence = 40;
 }
 
-Slime::Slime(string name)
+Slime::Slime(string monstername)
 {
 
 	random();
-	int hprandom = 20 + rand() % 11; // 20 ~ 30
-	int powerrandom = 5 + rand() % 6; // 5 ~ 10
+	int hprandom = 20 + rand() % 11;
+	int powerrandom = 5 + rand() % 6;
 
-	name = "Slime";
-	setName(name);
-	level = 1;
-	hp = 50 * hprandom;
-	power = 5 * powerrandom;
-	defence = 0;
+	monstername = "Slime";
+	setMonsterName(monstername);
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom;
+	monsterhp = 500 * hprandom;
+	monsterpower = 50 * powerrandom;
+	monsterdefence = 40;
 }
 
-vector<string> Slime::Droptable(int) const
+vector<string> Slime::Droptable(string) const
 {
-	return { "슬라임 구슬", "슬라임 액체" };
+	const string ItemA = "슬라임의 구슬";
+	const string ItemB = "슬라임의 액체";
+
+	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
+	cout << "전리품 흭득!!" << endl;
+	cout << RandomItem << endl;
+	return { RandomItem };
 }
 
 //void Slime::attack()
