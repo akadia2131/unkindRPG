@@ -25,10 +25,13 @@ int main(void)
 
     char name[20];
     bool hasSpace = true;
+    int money = 0;
 
     Inventory inv;
     string item;
+    int price;
     int count;
+    string itemType;
 
     cout << "------[unkindRPG]------" << endl;
     cout << "\n[ 당신의 이름을 입력해주세요 ]" << endl;
@@ -147,10 +150,24 @@ int main(void)
                 // -> 1) 아이템이 드랍됐는가? (y/n)
                 // -> 2) 소비아이템 또는 전리품 중 1가지 랜덤으로 결정 (난수)
                 // -> 3) 최종 드랍아이템이 정해졌으면 인벤토리에 넣을 것.
-
+                
                 delete monster;
 
                 cout << "\n\n[ 몬스터 토벌을 종료합니다 ]" << endl;
+                
+                // 임시 아이템 드랍
+
+                item = "탕후루";
+                count = 1;
+                price = 100;
+                itemType = "소모";
+                inv.addItem(item, price, count, itemType);
+
+                cout << item << "을(를) 얻었습니다!" << endl;
+
+                
+
+
 
                 cout << "\n[ 더 사냥하시겠습니까? ]" << endl;
                 cout << "[1] 네 / [2] 아니오" << endl;
@@ -190,7 +207,7 @@ int main(void)
             while (actionChoice)
             {
                 
-                cout << "[1] 아이템 구매\n[2] 아이템 판매\n[3]나가기" << endl;
+                cout << "[1] 아이템 구매\n[2] 아이템 판매\n[3] 상점 나가기" << endl;
                 cin >> actionChoice;
                 cout << "\n";
 
@@ -201,7 +218,12 @@ int main(void)
                         cout << "[ 추가할 아이템 입력 ] (임시)" << endl;
                         cin >> item;
                         count = 1;
-                        inv.addItem(item, count);
+                        price = 1000;
+                        //price *= 100;
+                        //price %= 160;
+                        itemType = "무기";
+
+                        inv.addItem(item, price, count, itemType);
 
                         cout << "\n" << item << "을(를) 구매하였습니다." << endl;
                         cout << "\n\"감사합니다\"" << endl;
@@ -212,10 +234,41 @@ int main(void)
                     {
                         cout << "[ 판매할 아이템 입력 ] (임시)" << endl;
                         cin >> item;
-                        count = 1;
-                        inv.removeItem(item, count);
-                        cout << "\n" << item << "을(를) 판매하였습니다." << endl;
-                        cout << "\n\"감사합니다!\"" << endl;
+                        cout << "[ 몇개를 판매하시겠습니까? ]" << endl;
+                        cin >> count;
+                        
+                        tuple<int, int, string> info = inv.getItemInfo(item); // 아이템의 이름을 입력시 정보만 호출
+                        int sum1 = get<0>(info); // 수량
+                        int sum2 = get<1>(info); // 가격
+                        string sum3 = get<2>(info); // 타입
+
+                        cout << "\n[ 현재 보유중인 " << item << "의 개수 : " << sum1 << "개 ]" << endl;
+                        cout << "[ " << item << " 개당 판매 가격 : " << sum2 << "G ]" << endl;
+                        cout << "\n" << item << "을(를) " << count << "개 판매하시겠습니까?" << endl;
+                        cout << "[1] 네 / [2] 아니오" << endl;
+
+                        cin >> actionChoice;
+
+                        switch (actionChoice)
+                        {
+                            case '1' :
+                            {
+                                cout << "\n" << item << "을(를) " << count << "개 판매하였습니다." << endl;
+                                auto result = inv.sellItem(item, count);
+                                cout << "[ 판매한 개수 : " << result.first << "개 ]" << endl;
+                                cout << "[ 총 판매 가격 : " << result.second << "G ]" << endl;
+
+                                cout << "\n\"감사합니다!\"" << endl;
+                                inv.showGold();
+                                break;
+                            }
+                            default :
+                            {
+                                break;
+                            }
+
+                        }
+
                         cout << "\"또 필요한 것이 있으실까요?\"\n" << endl;
                         break;
 
@@ -240,8 +293,11 @@ int main(void)
             break;
 
         } // 상점 나가기
-
-        case '4': // 인벤토리 확인
+        case '3' :
+        {
+            
+        }
+        case '4' : // 인벤토리 확인
         {
             cout << "=======[ 인벤토리 ]=======" << endl;
             inv.showInventory();
@@ -254,37 +310,3 @@ int main(void)
     
     return 0;
     }
-
-
-
-
-
-
-    // 이쪽은 임시로 메모해둔 것
-    // 인벤토리 구현 관련해서 나중에 활용하고 완성시 지울 예정.
-    // 
-    //    while (true) {
-    //    actionChoice = 0;
-
-    //    cout << "뭐줘? " << endl;
-    //    cout << "[1]추가 [2]제거 [3]볼래 [4]나가" << endl;
-    //    cin >> actionChoice;
-
-    //    if (actionChoice == '1') {
-    //        cin >> item >> count;
-    //        inv.addItem(item, count);
-    //    }
-    //    else if (actionChoice == '2') {
-    //        cin >> item >> count;
-    //        inv.removeItem(item, count);
-    //    }
-    //    else if (actionChoice == '3') {
-    //        inv.showInventory();
-    //    }
-    //    else if (actionChoice == '4') {
-    //        break;
-    //    }
-    //    else {
-    //        cout << "알 수 없는 명령어입니다.\n";
-    //    }
-    //}
