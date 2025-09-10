@@ -1,93 +1,120 @@
 //Monster.cpp
 #include "Monster.h"
 #include <iostream>
+#include <cstdlib>
+#include <ctime>
+
 
 Monster::Monster() 
 {
-    name = "Monster";
-    level = 0;
-    hp = 0;
-    power = 0;
-    defence = 0;
+    monstername = "Monster";
+    monsterlevel = 0;
+    monstermaxhp = 0;
+    monsterhp = 0;
+    monsterpower = 0;
+    monsterdefence = 0;
 
 }
 
-Monster::Monster(string name) 
+Monster::Monster(string monstername)
 {
-    this-> name = "Monster";
-    this-> level = 0;
-    this-> hp = 0;
-    this-> power = 0;
-    this-> defence = 0;
+    this->monstername = "Monster";
+    this->monsterlevel = 0;
+    this->monstermaxhp = 0;
+    this->monsterhp = 0;
+    this->monsterpower = 0;
+    this->monsterdefence = 0;
 
 }
 void Monster::printMonsterStatus() 
 {
     cout << "------------------------------------" << endl;
     cout << "[ 몬스터 능력치 ]" << endl;
-    cout << "이름 : " << name << endl;
-    cout << "Lv : " << level << endl;
-    cout << "HP : " << hp << endl;
-    cout << "공격력: " << power << endl;
-    cout << "방어력: " << defence << endl;
+    cout << "이름 : " << monstername << endl;
+    cout << "Lv : " << monsterlevel << endl;
+    cout << "최대 체력 : " << monstermaxhp << endl;
+    cout << "현재 HP : " << monsterhp << endl;
+    cout << "공격력: " << monsterpower << endl;
+    cout << "방어력: " << monsterdefence << endl;
     cout << "------------------------------------" << endl;
 }
 
-// get
-string Monster:: getName()
+static void random()
 {
-    return name;
-}
-
-int Monster::getLevel()
-{
-    return level;
-}
-
-int Monster::getHP()
-{
-    return hp;
-}
-
-int Monster::getPower()
-{
-    return power;
-}
-
-int Monster::getDefence()
-{
-    return defence;
-}
-
-//set
-void Monster::setName(string name)
-{
-    this-> name = name;
-}
-
-void Monster::setLevel(int level)
-{
-    this->level = level;
-}
-
-bool Monster::setHP(int hp)
-{
-    this-> hp = hp;
-    return this-> hp >= 1 ? true : false;
-}
-
-void Monster::setPower(int power)
-{
-    this->power = power;
-}
-
-void Monster::setDefence(int defence)
-{
-    this->defence = defence;
+    static bool randoms = false;
+    if (!randoms)
+    {
+        srand(static_cast<unsigned>(time(nullptr))); randoms = true;
+    }
 }
 
 // 드랍 아이템
-vector<string> Monster::Droptable(int) const 
+vector<string> Monster::Droptable(string) const
 {
-    return {};
+    return{};
 }
+
+// get
+string Monster:: getMonsterName()
+{
+    return monstername;
+}
+
+int Monster::getMonsterLevel()
+{
+    return monsterlevel;
+}
+
+int Monster::getMonsterMaxHp()
+{
+    return monstermaxhp;
+}
+
+int Monster::getMonsterHp()
+{
+    return monsterhp;
+}
+
+int Monster::getMonsterPower()
+{
+    return monsterpower;
+}
+
+int Monster::getMonsterDefence()
+{
+    return monsterdefence;
+}
+
+//set
+void Monster::setMonsterName(string monstername)
+{
+    this->monstername = monstername;
+}
+
+void Monster::setMonsterLevel(int monsterlevel)
+{
+    this->monsterlevel = monsterlevel;
+}
+
+void Monster::setMonsterMaxHp(int monstermaxhp)
+{
+    this->monstermaxhp = monstermaxhp;
+}
+
+bool Monster::setMonsterHp(int monsterhp)
+{
+    this->monsterhp = monsterhp;
+    return this->monsterhp >= 1 ? true : false;
+}
+
+void Monster::setMonsterPower(int monsterpower)
+{
+    this->monsterpower = monsterpower;
+}
+
+void Monster::setMonsterDefence(int monsterdefence)
+{
+    this->monsterdefence = monsterdefence;
+}
+
+

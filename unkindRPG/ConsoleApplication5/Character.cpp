@@ -4,95 +4,120 @@
 
 Character::Character()
 {
-    name = "Monster";
-    level = 0;
-    hp = 0;
-    power = 0;
-    defence = 0;
-
+    charactername = "Character";
+    characterlevel = 0;
+    charactermaxhp = 0;
+    characterhp = 0;
+    characterpower = 0;
+    characterdefence = 0;
+    characterexp = 0;
+    charactergold = 0;
 }
 
-Character::Character(string name)
+Character::Character(string charactername)
 {
-    this->name = "Character";
-    this->level = 0;
-    this->hp = 0;
-    this->power = 0;
-    this->defence = 0;
-
+    this->charactername = "Character";
+    this->characterlevel = 0;
+    this->charactermaxhp = 0;
+    this->characterhp = 0;
+    this->characterpower = 0;
+    this->characterdefence = 0;
+    this->characterexp = 0;
+    this->charactergold = 0;
 }
 void Character::printCharacterStatus()
 {
     cout << "------------------------------------" << endl;
     cout << "[ 캐릭터 능력치 ]" << endl;
-    cout << "이름 : " << name << endl;
-    cout << "Lv : " << level << endl;
-    cout << "HP : " << hp << endl;
-    cout << "공격력: " << power << endl;
-    cout << "방어력: " << defence << endl;
+    cout << "이름 : " << charactername << endl;
+    cout << "Lv : " << characterlevel << endl;
+    cout << "최대 체력 : " << charactermaxhp << endl;
+    cout << "현재 HP : " << characterhp << endl;
+    cout << "공격력: " << characterpower << endl;
+    cout << "방어력: " << characterdefence << endl;
+    cout << "방어력: " << characterdefence << endl;
     cout << "------------------------------------" << endl;
 }
 
 // get
 string Character::getCharacterName()
 {
-    return name;
+    return charactername;
 }
 
 int Character::getCharacterLevel()
 {
-    return level;
+    return characterlevel;
 }
 
-int Character::getCharacterHP()
+int Character::getCharacterMaxHp()
 {
-    return hp;
+    return charactermaxhp;
+}
+
+int Character::getCharacterHp()
+{
+    return characterhp;
 }
 
 int Character::getCharacterPower()
 {
-    return power;
+    return characterpower;
 }
 
 int Character::getCharacterDefence()
 {
-    return defence;
+    return characterdefence;
 }
 
 int Character::getCharacterExp()
 {
-    return exp;
+    return characterexp;
 }
 
 int Character::getCharacterGold()
 {
-    return gold;
+    return charactergold;
 }
 
 //set
-void Character::setCharacterName(string name)
+void Character::setCharacterName(string charactername)
 {
-    this->name = name;
+    this->charactername = charactername;
 }
 
-void Character::setCharacterLevel(int level)
+void Character::setCharacterLevel(int characterlevel)
 {
-    this->level = level;
+    this->characterlevel = characterlevel;
 }
 
-bool Character::setCharacterHp(int hp)
+void Character::setCharacterMaxHp(int charactermaxhp)
 {
-    this->hp = hp;
-    return this->hp >= 1 ? true : false;
+    this->characterlevel = charactermaxhp;
 }
 
-void Character::setCharacterPower(int power)
+bool Character::setCharacterHp(int characterhp)
 {
-    this->power = power;
+    this->characterhp = characterhp;
+    return this->characterhp >= 1 ? true : false;
 }
 
-void Character::setCharacterDefence(int defence)
+void Character::setCharacterPower(int characterpower)
 {
-    this->defence = defence;
+    this->characterpower = characterpower;
 }
 
+void Character::setCharacterDefence(int characterdefence)
+{
+    this->characterdefence = characterdefence;
+}
+
+void Character::setCharacterExp(int characterexp)
+{
+    this->characterexp = characterexp;
+}
+
+void Character::setCharacterGold(int charactergold)
+{
+    this->charactergold = charactergold;
+}

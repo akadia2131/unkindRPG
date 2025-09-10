@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <ctime>
 
-
 using namespace std;
 
 static void random()
@@ -18,36 +17,44 @@ static void random()
 
 Skeleton::Skeleton()
 {
+
 	random();
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-
-	name = "Skeleton";
-	level = 5;
-	hp = 200 * hprandom;
-	power = 20 * powerrandom;
-	defence = 10;
+	monstername = "Skeleton";
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monsterdefence = 40;
 }
 
-Skeleton::Skeleton(string name)
+Skeleton::Skeleton(string monstername)
 {
+
 	random();
-	int hprandom = 20 + rand() % 11; // 20 ~ 30
-	int powerrandom = 5 + rand() % 6; // 5 ~ 10
+	int hprandom = 20 + rand() % 11;
+	int powerrandom = 5 + rand() % 6;
 
-
-	name = "Skeleton";
-	setName(name);
-	level = 5;
-	hp = 200 * hprandom;
-	power = 20 * powerrandom;
-	defence = 10;
+	monstername = "Skeleton";
+	setMonsterName(monstername);
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom;
+	monsterhp = 500 * hprandom;
+	monsterpower = 50 * powerrandom;
+	monsterdefence = 40;
 }
 
-vector<string> Skeleton::Droptable(int) const
+vector<string> Skeleton::Droptable(string) const
 {
-	return { "스켈레톤의 뼈", "스켈레톤의 검" };
+	const string ItemA = "스켈레톤의 이빨";
+	const string ItemB = "스켈레톤의 검";
+
+	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
+	cout << "전리품 흭득!!" << endl;
+	cout << RandomItem << endl;
+	return { RandomItem };
 }
 
 //void Goblin::attack()

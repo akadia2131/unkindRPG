@@ -22,31 +22,41 @@ Troll::Troll()
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-	name = "Troll";
-	level = 45;
-	hp = 500 * hprandom; //캐릭터 레벨 호출
-	power = 50 * powerrandom; // 캐릭터 레벨 호출
-	defence = 40;
+	monstername = "Troll";
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monsterdefence = 40;
 }
 
-Troll::Troll(string name)
+Troll::Troll(string monstername)
 {
 
 	random();
 	int hprandom = 20 + rand() % 11;
 	int powerrandom = 5 + rand() % 6;
 
-	name = "Troll";
-	setName(name);
-	level = 45;
-	hp = 500 * hprandom;
-	power = 50 * powerrandom;
-	defence = 40;
+	monstername = "Troll";
+	setMonsterName(monstername);
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom;
+	monsterhp = 500 * hprandom;
+	monsterpower = 50 * powerrandom;
+	monsterdefence = 40;
 }
 
-vector<string> Troll::Droptable(int) const
+vector<string> Troll::Droptable(string) const
 {
-	return { "트롤의 이빨", "트롤의 검" };
+	const string ItemA = "트롤의 이빨";
+	const string ItemB = "트롤의 검";
+
+	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
+
+	cout << "전리품 흭득!!" << endl;
+	cout << RandomItem << endl;
+
+	return { RandomItem };
 }
 
 //void Troll::attack()

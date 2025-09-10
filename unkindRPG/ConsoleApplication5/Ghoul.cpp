@@ -4,7 +4,6 @@
 #include <cstdlib>
 #include <ctime>
 
-
 using namespace std;
 
 static void random()
@@ -18,36 +17,45 @@ static void random()
 
 Ghoul::Ghoul()
 {
+
 	random();
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-
-	name = "Ghoul";
-	level = 5;
-	hp = 200 * hprandom;
-	power = 20 * powerrandom;
-	defence = 10;
+	monstername = "Ghoul";
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monsterdefence = 40;
 }
 
-Ghoul::Ghoul(string name)
+Ghoul::Ghoul(string monstername)
 {
+
 	random();
-	int hprandom = 20 + rand() % 11; // 20 ~ 30
-	int powerrandom = 5 + rand() % 6; // 5 ~ 10
+	int hprandom = 20 + rand() % 11;
+	int powerrandom = 5 + rand() % 6;
 
-
-	name = "Ghoul";
-	setName(name);
-	level = 5;
-	hp = 200 * hprandom;
-	power = 20 * powerrandom;
-	defence = 10;
+	monstername = "Ghoul";
+	setMonsterName(monstername);
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom;
+	monsterhp = 500 * hprandom;
+	monsterpower = 50 * powerrandom;
+	monsterdefence = 40;
 }
 
-vector<string> Ghoul::Droptable(int) const
+
+vector<string> Ghoul::Droptable(string) const
 {
-	return { "구울의 이빨", "구울의 가죽" };
+	const string ItemA = "구울의 이빨";
+	const string ItemB = "구울의 검";
+
+	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
+	cout << "전리품 흭득!!" << endl;
+	cout << RandomItem << endl;
+	return { RandomItem };
 }
 
 //void Goblin::attack()

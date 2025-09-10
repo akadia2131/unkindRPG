@@ -2,9 +2,7 @@
 #include <cstring>
 #include <ctime>
 #include <cstdlib>
-
 #include "Inventory.h"
-
 #include "Monster.h"
 #include "Goblin.h"
 #include "Orc.h"
@@ -14,15 +12,12 @@
 #include "Ghoul.h"
 #include "Hydra.h"
 #include "Skeleton.h"
+#include "Character.h"
+
 
 using namespace std;
 
-<<<<<<< HEAD
-// 반영됨?
-=======
 
-// 반영? 
->>>>>>> dev
 // 메인 함수
 int main(void)
 {
@@ -33,6 +28,8 @@ int main(void)
 
     Inventory inv;
     string item;
+    //몬스터 드랍 아이템;
+ 
     int count;
 
     cout << "------[unkindRPG]------" << endl;
@@ -136,7 +133,9 @@ int main(void)
                     break;
                 }
 
-                monster->printMonsterStatus();
+                monster->printMonsterStatus();       
+
+                inv.addItem(monster->Droptable("").front(), 1);
 
                 int Exp = 50; // 50 경험치
                 int Gold = 10 + rand() % 11; // 10 ~ 20 골드 
@@ -144,12 +143,10 @@ int main(void)
                 cout << "경험치 : " << Exp << endl;
                 cout << "골드 : " << Gold << endl;
 
-                for (const string& d : monster->Droptable()) //드랍 테이블
-                    cout << "드랍 아이템 : " << d << endl; // 드랍 테이블
                 //// 작업해야되는 부분
                 // 1. 몬스터 처치시 드랍테이블에 있는 아이템 중 1가지만 string 또는 char 타입으로 받을 것
-                // 2. 아이템 드랍 확률을 조정 할 것.
-                // -> 1) 아이템이 드랍됐는가? (y/n)
+                // 2. 아이템 드랍 확률을 조정 할 것. 
+                // -> 1) 아이템이 드랍됐는가? (y/n) 
                 // -> 2) 소비아이템 또는 전리품 중 1가지 랜덤으로 결정 (난수)
                 // -> 3) 최종 드랍아이템이 정해졌으면 인벤토리에 넣을 것.
 
@@ -166,6 +163,7 @@ int main(void)
                     case '1':
                     {
                         cout << "\n\n[ 이어서 전투합니다 ]" << endl;
+                        Monster_choice = 1 + rand() % 8; // 랜덤으로 몬스터를 조우
                         break;
                     }
                     case '2':

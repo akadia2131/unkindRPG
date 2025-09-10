@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <ctime>
 
+using namespace std;
+
 static void random()
 {
 	static bool randoms = false;
@@ -13,9 +15,6 @@ static void random()
 	}
 }
 
-
-using namespace std;
-
 Orc::Orc()
 {
 
@@ -23,33 +22,40 @@ Orc::Orc()
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-	name = "Orc";
-	level = 30;
-	hp = 400 * hprandom;
-	power = 30 * powerrandom;
-	defence = 40;
+	monstername = "Orc";
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
+	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monsterdefence = 40;
 }
 
-Orc::Orc(string name)
+Orc::Orc(string monstername)
 {
 
 	random();
-	int hprandom = 20 + rand() % 11; // 20 ~ 30
-	int powerrandom = 5 + rand() % 6; // 5 ~ 10
+	int hprandom = 20 + rand() % 11;
+	int powerrandom = 5 + rand() % 6;
 
-	name = "Orc";
-	setName(name);
-	level = 30;
-	hp = 400 * hprandom;
-	power = 30 * powerrandom;
-	defence = 40;
+	monstername = "Orc";
+	setMonsterName(monstername);
+	monsterlevel = 45;
+	monstermaxhp = 500 * hprandom;
+	monsterhp = 500 * hprandom;
+	monsterpower = 50 * powerrandom;
+	monsterdefence = 40;
 }
 
-vector<string> Orc::Droptable(int) const
+vector<string> Orc::Droptable(string) const
 {
-	return { "오크의 이빨", "오크의 검" };
-}
+	const string ItemA = "오크의 이빨";
+	const string ItemB = "오크의 검";
 
+	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
+	cout << "전리품 흭득!!" << endl;
+	cout << RandomItem << endl;
+	return { RandomItem };
+}
 //void Orc::attack()
 //{
 //	cout << "Orc 가 공격했다." << endl;
