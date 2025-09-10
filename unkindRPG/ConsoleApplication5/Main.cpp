@@ -77,8 +77,13 @@ int main(void)
 
     // 몬스터 전투 구현
     int Monster_choice = 1 + rand() % 8; // 랜덤으로 몬스터를 조우
-    Monster* monster = nullptr;
+    Monster* monster = nullptr; // 몬스터
+    Character charater(name); //캐릭터
 
+    monster = new Orc("Orc");
+    int Orcstatus[] = monster->getMonsterHp();
+    delete monster;
+    cout << Orchp << endl;
 
     while (true)
     {
@@ -125,7 +130,7 @@ int main(void)
                 case 6:
                     monster = new Ghoul(name);
                     break;
-                case 7:
+                case 7:                                                        
                     monster = new Hydra(name);
                     break;
                 case 8:
@@ -133,9 +138,11 @@ int main(void)
                     break;
                 }
 
-                monster->printMonsterStatus();       
-
+                monster->printMonsterStatus();    
+                
                 inv.addItem(monster->Droptable("").front(), 1);
+
+                item = monster->Droptable("").front();
 
                 int Exp = 50; // 50 경험치
                 int Gold = 10 + rand() % 11; // 10 ~ 20 골드 
@@ -152,6 +159,8 @@ int main(void)
 
                 delete monster;
 
+           
+                
                 cout << "\n\n[ 몬스터 토벌을 종료합니다 ]" << endl;
 
                 cout << "\n[ 더 사냥하시겠습니까? ]" << endl;
@@ -239,8 +248,12 @@ int main(void)
 
                 
             }
-             
+        case '3':
+        {
+            charater.printCharacterStatus();
             break;
+        }
+        
 
         } // 상점 나가기
 
