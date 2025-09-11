@@ -200,8 +200,8 @@ int main(void)
                         {
                             // 대미지 계산식 = 내 공격력의 -+10%
                             int sum = ((CharacterPower / 10) * 9) + rand() % (((CharacterPower / 10) * 11) - ((CharacterPower / 10) * 9));
-                            cout << "적을 공격했다! / " << monsterName << "에게 " << CharacterPower << "의 대미지!" << endl;
-                            monsterHp -= CharacterPower;
+                            cout << "적을 공격했다! / " << monsterName << "에게 " << sum << "의 대미지!" << endl;
+                            monsterHp -= sum;
                             break;
                         }
                         case 2 : // 방어
@@ -222,6 +222,7 @@ int main(void)
                         {
                             int hpPotion = 0;
                             int atkPotion = 0;
+                            battleChance = true;
 
                             tuple<int, int, string> hpInfo = inv.getItemInfo("체력포션"); // 체력포션이 있는지 체크
                             int sum1 = get<0>(hpInfo); // 수량
@@ -240,7 +241,6 @@ int main(void)
                             if (atkPotion == 0 && hpPotion == 0)
                             {
                                 cout << "[ 사용할 수 있는 아이템이 없다! ]" << endl;
-                                battleChance = true;
                             }
                             else
                             {
@@ -255,60 +255,50 @@ int main(void)
                                     cout << "[" << j++ << "] 힘의영약 사용 / ";
                                 }
                                 cout << "[" << j << "] 사용하지 않는다" << endl;   
-                                
+
                                 cin >> battleAction;
 
-                                switch (battleAction)
+                                if (battleAction == 1)
                                 {
-                                    case 1 :
+                                    if (hpPotion > 0)
                                     {
-                                        if (hpPotion > 0)
-                                        {
-                                            cout << "[ 체력이 회복됩니다 ]" << endl;
-                                            cout << "[ HP 300 회복! ]" << endl;
-                                            CharacterHp += 300;
-                                            inv.removeItem("체력포션", 1);
+                                        cout << "[ 체력이 회복됩니다 ]" << endl;
+                                        cout << "[ HP 300 회복! ]" << endl;
+                                        CharacterHp += 300;
+                                        inv.removeItem("체력포션", 1);
 
-                                            if (CharacterHp > CharacterMaxhp) // 최대체력에 다다르면 초과분을 최대체력에 맞춘다.
-                                            {
-                                                CharacterHp = CharacterMaxhp;
-                                            }
-                                            battleChance = true;
+                                        if (CharacterHp > CharacterMaxhp) // 최대체력에 다다르면 초과분을 버리고 현재 체력을 최대체력에 맞춘다.
+                                        {
+                                            CharacterHp = CharacterMaxhp;
                                         }
                                         break;
                                     }
-                                    case 2 :
+                                    else if (atkPotion > 0)
                                     {
-                                        if (hpPotion > 0 && atkPotion > 0 && j == 3)
-                                        {
-                                            if (doping)
-                                            {
-                                                cout << "[ 이미 힘이 넘치는 상태입니다 ]" << endl; //이미 힘의영약을 사용한 상태라면 다시 사용할 수 없다
-                                                battleChance = true;
-                                            }
-                                            else
-                                            {
-                                                CharacterPower += 50;
-                                                cout << "[ 힘이 넘쳐 흐릅니다! ]" << endl;
-                                                cout << "[ 공격력 50 증가! ] [ 현재 공격력 : " << CharacterPower << " ]" << endl;
-                                                doping = true;
-                                                inv.removeItem("힘의영약", 1);
-                                            }
-                                        }
-                                        else if (hpPotion == 0 || atkPotion == 0)
-                                        {
-                                            battleChance = true;
-                                        }
-                                        break;
+                                        battleAction = 2;
                                     }
-                                    default:
+                                        
+                                }
+                                if (battleAction == 2)
+                                {
+                                    if (atkPotion > 0)
                                     {
-                                        battleChance = true;
-                                        break;
+                                        if (doping)
+                                        {
+                                            cout << "[ 이미 힘이 넘치는 상태입니다 ]" << endl; //이미 힘의영약을 사용한 상태라면 다시 사용할 수 없다
+                                        }
+                                        else
+                                        {
+                                            CharacterPower += 50;
+                                            cout << "[ 힘이 넘쳐 흐릅니다! ]" << endl;
+                                            cout << "[ 공격력 50 증가! ] [ 현재 공격력 : " << CharacterPower << " ]" << endl;
+                                            doping = true;
+                                            inv.removeItem("힘의영약", 1);
+                                        }
                                     }
                                 }
-                                break;
-                            }                            
+                            }
+                            break;                            
                         }
                         case 4:
                         {
@@ -338,7 +328,7 @@ int main(void)
                         if (monsterHp >= 0) // 적이 이미 죽은 경우 공격은 생략한다.
                         {
                             int sum = ((monsterPower / 10) * 8) + rand() % (monsterPower - ((monsterPower / 10) * 8));
-                            cout << "\n" << monsterName << "의 공격! / \"" << monsterCrying << "\"" << endl;
+                            cout << "\n" << monsterName << "의 공격! / " << monsterCrying << endl;
                             damage = sum - CharacterDefence;
 
                             if (damage <= 0) // 내 방어력이 더 높은 경우
@@ -459,10 +449,21 @@ int main(void)
                 if (CharacterExp >= 100 && CharacterLevel < 10)
                 {
                     cout << "\n[ 레벨업을 하였습니다! ] " << endl;
-                    CharacterLevel++;
-                    CharacterMaxhp = CharacterMaxhp + (CharacterLevel * 20);
-                    CharacterPower = (CharacterPower - weaponOption) + (CharacterLevel * 5);
+
                     CharacterExp -= 100;
+
+                    cout << "[ 레벨 : " << CharacterLevel++ << " -> " << CharacterLevel << " ]\n";
+                    cout << "[ 최대 체력 : " << CharacterMaxhp << " -> ";
+                    CharacterMaxhp = CharacterMaxhp + (CharacterLevel * 20);
+                    cout << CharacterMaxhp << " ]\n";
+                    cout << "[ 공격력 : " << CharacterPower << " -> ";
+                    CharacterPower = (CharacterPower - weaponOption) + (CharacterLevel * 5);
+                    cout << CharacterPower << " ]";
+                    if (weaponOption != 0)
+                    {
+                        cout << "[+" << weaponOption << "]";
+                    }
+                    cout << "\n";
                 }
                 
                 CharacterHp = CharacterMaxhp; // 전투 종료 후 체력 자동 회복
