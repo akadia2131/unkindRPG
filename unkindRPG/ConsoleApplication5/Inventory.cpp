@@ -106,7 +106,12 @@ void Inventory::showInventory()
 
     int index = 1;
     for (const auto& item : items) {
-        cout << "[" << index++ << "][" << item.type << "] " << item.name;
+        cout << "[";
+        if (index < 10)
+        {
+            cout << "0";
+        }
+        cout << index++ << "][" << item.type << "] " << item.name;
         if (item.quantity > 1) {
             cout << " x " << item.quantity;
         }
@@ -129,7 +134,6 @@ tuple<int, int, string> Inventory::getItemInfo(const string& name) const  // 아�
 tuple<string, int, int> Inventory::ItemInfoIndex(int index)
 {
     if (index < 1 || index >(int)items.size()) {
-        cout << "[ 잘못된 번호입니다 ] \n";
         return { "", 0, 0 };
     }
     auto it = items.begin() + (index - 1);
@@ -145,11 +149,15 @@ void Inventory::showGold() const
     cout << "[ 현재 소지금 : " << playerGold << "G ]" << endl;
 }
 
+int Inventory::showGold(int) const
+{
+    return playerGold;
+}
+
 void Inventory::addGold(int amount) // 골드 획득하기
 {
     if (amount > 0) {
         playerGold += amount;
-        cout << amount << " G 획득!\n";
     }
     else {
         // error 메세지
@@ -165,7 +173,6 @@ void Inventory::reduceGold(int amount) // 골드 소실
     }
     if (playerGold >= amount) {
         playerGold -= amount;
-        cout << amount << " G 사용!\n";
     }
     else {
         // error메세지

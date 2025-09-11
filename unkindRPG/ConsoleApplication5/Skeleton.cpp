@@ -22,11 +22,11 @@ Skeleton::Skeleton()
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-	monstername = "Skeleton";
+	monstername = "스켈레톤";
 	monsterlevel = 45;
-	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monstermaxhp = 550 + hprandom;
+	monsterhp = 550 + hprandom; 
+	monsterpower = 0 + powerrandom;
 	monsterdefence = 0;
 }
 
@@ -52,12 +52,6 @@ vector<string> Skeleton::Droptable(string) const
 	const string ItemB = "스켈레톤의 검";
 
 	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
-	cout << "전리품 흭득!!" << endl;
-	cout << RandomItem << endl;
+
 	return { RandomItem };
 }
-
-//void Goblin::attack()
-//{
-//	cout << "Goblin 가 공격했다." << endl;
-//}

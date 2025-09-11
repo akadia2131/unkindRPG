@@ -31,6 +31,7 @@ public:
     void addGold(int amount);    // 골드 획득
     void reduceGold(int amount); // 골드 소실
     void showGold() const; // 소지 골드 확인
+    int showGold(int dummy) const; // 소지 골드 반환만 하기
     tuple<int, int, string> getItemInfo(const string& name) const; // 아이템 이름으로 정보 조회 : (수량, 가격, 타입) 반환
     tuple<string, int, int> ItemInfoIndex(int index); // 아이템 번호로 정보 조회 : (이름, 수량) 반환
 

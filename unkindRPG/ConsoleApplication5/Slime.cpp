@@ -22,11 +22,11 @@ Slime::Slime()
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-	monstername = "Slime";
+	monstername = "슬라임";
 	monsterlevel = 45;
-	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monstermaxhp = 150 + hprandom;
+	monsterhp = 150 + hprandom; 
+	monsterpower = 10 + powerrandom;
 	monsterdefence = 0;
 }
 
@@ -52,12 +52,5 @@ vector<string> Slime::Droptable(string) const
 	const string ItemB = "슬라임의 액체";
 
 	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
-	cout << "전리품 흭득!!" << endl;
-	cout << RandomItem << endl;
 	return { RandomItem };
 }
-
-//void Slime::attack()
-//{
-//	cout << "Orc 가 공격했다." << endl;
-//}

@@ -22,11 +22,11 @@ Hydra::Hydra()
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-	monstername = "Hydra";
+	monstername = "히드라";
 	monsterlevel = 45;
-	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monstermaxhp = 400 + hprandom; 
+	monsterhp = 400 + hprandom; 
+	monsterpower = 45 + powerrandom;
 	monsterdefence = 0;
 }
 
@@ -52,13 +52,5 @@ vector<string> Hydra::Droptable(string) const
 	const string ItemB = "히드라의 독침";
 
 	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
-	cout << "전리품 흭득!!" << endl;
-	cout << RandomItem << endl;
 	return { RandomItem };
 }
-
-
-//void Goblin::attack()
-//{
-//	cout << "Goblin 가 공격했다." << endl;
-//}

@@ -22,11 +22,11 @@ Orc::Orc()
 	int hprandom = 20 + rand() % 11; // 20 ~ 30
 	int powerrandom = 5 + rand() % 6; // 5 ~ 10
 
-	monstername = "Orc";
+	monstername = "오크";
 	monsterlevel = 45;
-	monstermaxhp = 500 * hprandom; //최대 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterhp = 500 * hprandom; //현재 체력 500 부분에 캐릭터 레벨이 호출 되야함
-	monsterpower = 50 * powerrandom; // 50 부분에 캐릭터 레벨 호출 되야함
+	monstermaxhp = 200 + hprandom; 
+	monsterhp = 200 + hprandom; 
+	monsterpower = 100 + powerrandom; 
 	monsterdefence = 0;
 }
 
@@ -52,11 +52,5 @@ vector<string> Orc::Droptable(string) const
 	const string ItemB = "오크의 검";
 
 	const string RandomItem = (rand() % 2) ? ItemA : ItemB;
-	cout << "전리품 흭득!!" << endl;
-	cout << RandomItem << endl;
 	return { RandomItem };
 }
-//void Orc::attack()
-//{
-//	cout << "Orc 가 공격했다." << endl;
-//}
